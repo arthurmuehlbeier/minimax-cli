@@ -24,11 +24,24 @@ pi install git:github.com/arthurmuehlbeier/minimax-cli
 
 ## Configure
 
+Create a `.env` file in your project root or home directory:
+
 ```bash
+MINIMAX_API_KEY=your_api_key_here
+```
+
+**Where to put it:**
+- **Skill directory**: `.env` next to the skill (e.g., `~/.claude/skills/minimax/.env`)
+- **Home-directory**: `~/.minimax-cli.env` or `~/.config/minimax-cli/.env`
+
+The script checks all these locations automatically. Alternatively, export it:
+
+```bash
+# .bashrc, .zshrc, or .profile
 export MINIMAX_API_KEY=your_api_key_here
 ```
 
-Get an API key at https://platform.minimax.io
+**Get an API key at https://platform.minimax.io**
 
 ## Use
 

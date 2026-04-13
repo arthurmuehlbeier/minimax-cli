@@ -32,12 +32,22 @@ Use MiniMax API for web search and image analysis.
 
 ## Setup
 
-**Required environment variables:**
-- `MINIMAX_API_KEY` — API key from https://platform.minimax.io
+**1. Get an API key** at https://platform.minimax.io
+
+**2. Create a `.env` file** in the skill directory or home:
 
 ```bash
-export MINIMAX_API_KEY=your_api_key_here
+# Next to the skill (recommended)
+echo 'MINIMAX_API_KEY=your_key' > ~/.claude/skills/minimax/.env
+
+# Or in home directory
+mkdir -p ~/.config/minimax-cli
+mv .env ~/.config/minimax-cli/.env
 ```
+
+The script auto-detects `.env` in:
+- Skill directory: `~/.claude/skills/minimax/.env`
+- Home: `~/.minimax-cli.env` or `~/.config/minimax-cli/.env`
 
 ## Usage
 
@@ -76,7 +86,7 @@ scripts/minimax.sh image "What objects are shown?" "/path/to/screenshot.png"
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| `MINIMAX_API_KEY environment variable is not set` | No API key | Set MINIMAX_API_KEY |
+| `MINIMAX_API_KEY is not set` | No API key | Create `.env` file with `MINIMAX_API_KEY` |
 | `File not found` | Invalid path | Check file exists |
 | `Failed to fetch image` | Invalid URL | Verify URL is accessible |
 

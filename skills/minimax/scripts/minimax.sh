@@ -6,6 +6,11 @@
 
 set -euo pipefail
 
+# Load .env from skill directory (relative to this script) or home
+for env_file in "${BASH_SOURCE[0]%/*}/../.env" "${HOME}/.config/minimax-cli/.env"; do
+    [[ -f "$env_file" ]] && source "$env_file" && break
+done
+
 API_KEY="${MINIMAX_API_KEY:-}"
 API_HOST="${MINIMAX_API_HOST:-https://api.minimax.io}"
 
@@ -19,7 +24,18 @@ die() {
 }
 
 # Validate API key
-[[ -n "$API_KEY" ]] || die "MINIMAX_API_KEY environment variable is not set"
+[[ -n "$API_KEY" ]] || {
+    echo -e "${RED}Error: MINIMAX_API_KEY is not set${NC}" >&2
+    echo "" >&2
+    echo "Create a .env file with your API key:" >&2
+    echo "  echo 'MINIMAX_API_KEY=your_key' > .env" >&2
+    echo "" >&2
+    echo "Or set it inline:" >&2
+    echo "  MINIMAX_API_KEY=your_key minimax.sh search \"query\"" >&2
+    echo "" >&2
+    echo "Get your API key at https://platform.minimax.io" >&2
+    exit 1
+}
 
 ACTION="${1:-}"
 [[ -n "$ACTION" ]] || die "Usage: minimax.sh <command> [args]"
