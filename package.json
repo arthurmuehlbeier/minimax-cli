@@ -1,0 +1,25 @@
+{
+  "name": "minimax-cli",
+  "version": "1.1.0",
+  "description": "Web search and image analysis via MiniMax API",
+  "keywords": [
+    "minimax",
+    "search",
+    "image-analysis",
+    "ai-agent",
+    "skill"
+  ],
+  "license": "MIT",
+  "files": [
+    "skills/",
+    "package.json",
+    "README.md"
+  ],
+  "pi": {
+    "skills": ["./skills"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arthurmuehlbeier/minimax-cli"
+  }
+}
